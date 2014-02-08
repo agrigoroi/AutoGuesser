@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import main.*;
@@ -20,7 +21,7 @@ import main.*;
 public class Application extends Controller {
 
     public static Result index() {
-        return ok(index.render());
+        return ok(index.render(new ArrayList<String>()));
     }
    
     public static Result contact() {
@@ -29,11 +30,11 @@ public class Application extends Controller {
 
     public static Result images() {
         List<String> images = AutoTraderAPI.getAdvertImageLinks(AutoTraderAPI.getRandomAdvertId());
-        String image = "";
-        for(String imageLink: images) {
-            image = image + imageLink + "\n";
-        }
-        return ok(image);
+//        String image = "";
+//        for(String imageLink: images) {
+//            image = image + imageLink + "\n";
+//        }
+        return ok(index.render(images));
     }
 
 }

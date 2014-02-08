@@ -15,11 +15,12 @@
     				</div>
     
     				<!-- The Gallery as lightbox dialog. End. -->
-    				<!-- Images -->
-    				<div id="links">
-    					<a href="assets/images/car1.jpg" title="Car1"> </a>
-    					<a href="assets/images/car2.jpg" title="Car2"> </a>
-    				</div>
+				    <!-- Images -->
+				    <div id="links">
+				    @for(image <- images) {
+				       <a href="@image" title="Car1"> </a>
+				    }
+				    </div>
 				</div>
 			</div> <!--End span7-->
 			
@@ -28,8 +29,10 @@
 			</div>
 		</div>
 	</div>
-	    
-    
+
+@(images: List[String])
+    <!--Include header-->
+	@header()	
     
     <div class="panel panel-success">
   <div class="panel-body">
