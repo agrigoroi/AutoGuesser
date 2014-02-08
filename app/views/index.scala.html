@@ -1,4 +1,4 @@
-
+@(images: List[String])
     <!--Include header-->
 	@header()	
 	    
@@ -16,8 +16,9 @@
     <!-- The Gallery as lightbox dialog. End. -->
     <!-- Images -->
     <div id="links">
-    <a href="assets/images/car1.jpg" title="Car1"> </a>
-    <a href="assets/images/car2.jpg" title="Car2"> </a>
+    @for(image <- images) {
+       <a href="@image" title="Car1"> </a>
+    }
     </div>
     
     <div class="panel panel-success">
