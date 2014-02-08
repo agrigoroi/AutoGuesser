@@ -8,7 +8,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/img/favicon.ico">
-    <link rel="stylesheet" href="assets/stylesheets/blueimp-gallery.min.css">
 
     <title>Starter Template for Bootstrap</title>
 
@@ -35,52 +34,30 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="#">Contact</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://www.autotrader.co.uk" target="_blank">Autotrader</a></li>
+            <li><a href="http://www.autotrader.co.uk">Autotrader</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
-    
-    <!-- Images scroll. Blueimp -->
-    <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-    <div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
-        <div class="slides"></div>
-        <h3 class="title"></h3>
-        <a class="prev">‹</a>
-        <a class="next">›</a>
-        <a class="play-pause"></a>
-        <ol class="indicator"></ol>
-    </div>
-    
-    <!-- The Gallery as lightbox dialog. End. -->
-    <!-- Images -->
-    <div id="links">
-    <a href="assets/images/car1.jpg" title="Car1"> </a>
-    <a href="assets/images/car2.jpg" title="Car2"> </a>
-    </div>
-    
-    
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Contact us!</h1>
+        <p class="lead">We are here to help!</p>
+      </div>
+
+    </div><!-- /.container -->
+
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="assets/javascripts/bootstrap.min.js"></script>
-    <script src="assets/javascripts/blueimp-gallery.min.js"></script>
-    
-    <!-- javascript for lightbox gallery -->
-    <script>
-blueimp.Gallery(
-    document.getElementById('links').getElementsByTagName('a'),
-    {
-        container: '#blueimp-gallery-carousel',
-        carousel: true
-    }
-);
-</script>
   </body>
 </html>
