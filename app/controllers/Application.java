@@ -20,18 +20,20 @@ import main.*;
 public class Application extends Controller {
 
     public static Result index() {
-//        List<String> images = AutoTraderAPI.getAdvertImageLinks(AutoTraderAPI.getRandomAdvertId());
-////        System.out.println(AutoTraderAPI.getRandomAdvertId());
-//        String image = "";
-//        for(String imageLink: images) {
-//            image = image += imageLink += "\n";
-//        }
-//        return ok(image);
         return ok(index.render());
     }
    
     public static Result contact() {
         return ok(contact.render());
+    }
+
+    public static Result images() {
+        List<String> images = AutoTraderAPI.getAdvertImageLinks(AutoTraderAPI.getRandomAdvertId());
+        String image = "";
+        for(String imageLink: images) {
+            image = image + imageLink + "\n";
+        }
+        return ok(image);
     }
 
 }

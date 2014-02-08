@@ -16,14 +16,16 @@ import java.util.Random;
  */
 public class AutoTraderAPI {
 
-    public static String AUTO_TRADER_ACCESS_TOKEN = "yAELZNI2to-elvoxnf2PTWc6neStvwn-NqHfSP2WSqOfo7EFwu1Rk692UP8NomaCuk4LjwcbjcfttKdjZN8nly6bxE0zkpaWDOfEP_Y2yofx3ItuUvKFZ8EVCt23nSZzKhCp4GS6pUV1TH28yLK9N_1NxvVUPTzDoRIUyiVm0clXHhKYIvBdVmnQzx6H8aSuW09R8oJ5xqx9oJLkTC8ZTkCwgghomxQchDHZyagZowfAeCX1PKwkjVwAShCt7kgi";
-    private static Random random = new Random();
+    private static final String AUTO_TRADER_ACCESS_TOKEN = "yAELZNI2to-elvoxnf2PTWc6neStvwn-NqHfSP2WSqOfo7EFwu1Rk692UP8NomaCuk4LjwcbjcfttKdjZN8nly6bxE0zkpaWDOfEP_Y2yofx3ItuUvKFZ8EVCt23nSZzKhCp4GS6pUV1TH28yLK9N_1NxvVUPTzDoRIUyiVm0clXHhKYIvBdVmnQzx6H8aSuW09R8oJ5xqx9oJLkTC8ZTkCwgghomxQchDHZyagZowfAeCX1PKwkjVwAShCt7kgi";
+    private static final Random random = new Random();
 //    public static String DEFAULT_IMAGES_URL = "http://pictures2.autotrader.co.uk/imgser-uk/servlet/media";
-    public static String ADVERT_BASE_URL = "http://www.autotrader.co.uk/classified/advert/";
-    public static String FIREFOX_USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0";
-    public static String GALLERY_DIV_ID = "fpa-showroom-thumbnails";
-    public static String BASE_IMAGE_URL = "http://pictures2.autotrader.co.uk/imgser-uk/servlet/media?id=";
-    public static String SEARCH_URL = "http://www.autotrader.co.uk/search/used/cars/price-from/500/onesearchad/used%2Cnearlynew%2Cnew/page/";
+private static final String ADVERT_BASE_URL = "http://www.autotrader.co.uk/classified/advert/";
+    private static final String FIREFOX_USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0";
+    private static final String GALLERY_DIV_ID = "fpa-showroom-thumbnails";
+    private static final String BASE_IMAGE_URL = "http://pictures2.autotrader.co.uk/imgser-uk/servlet/media?id=";
+    private static final String SEARCH_URL = "http://www.autotrader.co.uk/search/used/cars/price-from/500/onesearchad/used%2Cnearlynew%2Cnew/page/";
+    private static final int IMAGE_WIDTH = 940;
+    private static final int IMAGE_HEIGHT = 400;
 
     public static List<String> getAdvertImageLinks(String id) {
         try {
@@ -32,7 +34,7 @@ public class AutoTraderAPI {
             List<String> toReturn = new ArrayList<String>();
             for(Element img: imgs) {
                 if(img.childNodeSize()>0)
-                    toReturn.add(BASE_IMAGE_URL + img.child(0).attr("data-imageid"));
+                    toReturn.add(BASE_IMAGE_URL + img.child(0).attr("data-imageid") + "&height=" + IMAGE_HEIGHT); //+ "&width=" + IMAGE_WIDTH 
             }
             return toReturn;
         } catch (IOException e) {
