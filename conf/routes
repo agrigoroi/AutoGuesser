@@ -5,6 +5,7 @@
 # Home page
 GET        /                    controllers.Application.index()
 GET        /contact             controllers.Application.contact()
+GET        /rules               controllers.Application.rules()
 GET        /check/:id/:price    controllers.Application.checkPrice(id: String, price: Int)
 
 # Map static resources from the /public folder to the /assets URL path

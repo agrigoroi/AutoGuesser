@@ -26,6 +26,10 @@ public class Application extends Controller {
     public static Result contact() {
         return ok(contact.render());
     }
+    
+    public static Result rules() {
+        return ok(rules.render());
+    }
 
     public static Result index() {
         Advert advert = AutoTraderAPI.getRandomAdvert();
