@@ -57,7 +57,7 @@ public class Mongo
 			cursor.close();
 		}
 		
-		return (int)query.get("price");
+		return (Integer)query.get("price");
 	}// End findMongo 
 	
 }
