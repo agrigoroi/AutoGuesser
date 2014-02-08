@@ -45,7 +45,7 @@ public class Mongo
 	
 	public int findAdvert(String search)
 	{
-		BasicDBObject query = new BasicDBObject("id", search);
+		BasicDBObject query = new BasicDBObject("fake_id", search);
 		
 		DBCursor cursor = coll.find(query);
 				
