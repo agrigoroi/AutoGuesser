@@ -23,10 +23,9 @@ public class AutoTraderAPI {
     private static final String FIREFOX_USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0";
     private static final String GALLERY_DIV_ID = "fpa-showroom-thumbnails";
     private static final String BASE_IMAGE_URL = "http://pictures2.autotrader.co.uk/imgser-uk/servlet/media?id=";
-    private static final String SEARCH_URL = "http://www.autotrader.co.uk/search/used/cars/price-from/500/onesearchad/used%2Cnearlynew%2Cnew/page/";
-    private static final String SORT_PARAMETER = "/sort/locasc";
-    private static final int IMAGE_WIDTH = 940;
-    private static final int IMAGE_HEIGHT = 400;
+    private static final String SEARCH_URL = "http://www.autotrader.co.uk/search/used/cars/postcode/m12bj/radius/1501/price-from/500/sort/locasc/page/";
+    private static final String SORT_PARAMETER = "";
+    private static final int IMAGE_HEIGHT = 800;
     private static final int SEARCH_NUMBER_OF_PAGES = 1000;
 
     public static List<String> getAdvertImageLinks(String id) {
@@ -36,7 +35,7 @@ public class AutoTraderAPI {
             List<String> toReturn = new ArrayList<String>();
             for(Element img: imgs) {
                 if(img.childNodeSize()>0)
-                    toReturn.add(BASE_IMAGE_URL + img.child(0).attr("data-imageid") + "&height=" + IMAGE_HEIGHT); //+ "&width=" + IMAGE_WIDTH 
+                    toReturn.add(BASE_IMAGE_URL + img.child(0).attr("data-imageid"));// + "&height=" + IMAGE_HEIGHT); //+ "&width=" + IMAGE_WIDTH
             }
             return toReturn;
         } catch (IOException e) {
