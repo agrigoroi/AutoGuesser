@@ -6,7 +6,7 @@
     <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
     <div class="container">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
                     <div class="slides"></div>
                     <h3 class="title"></h3>
@@ -24,8 +24,25 @@
                     }
                 </div>
             </div>
-            <div class="col-md-2">
-                <h3>test</h3>
+            <div class="col-md-3">
+                <h4>Current Score:</h4>
+                <form class ="form-inline" role="form">
+                    <div class="form-group">
+                        <label class="sr-only" for="priceInput">Car price guess</label>
+                        <input style="width: 9em;" type="number" class="form-control input-xsmall" id="price" placeholder="Enter price">
+                    </div>
+                    
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-modal-sm">Check!</button>
+                    <div class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                          <div class="modal-content">
+                              <center><h3>Your guess:</h3></center>
+                              <center><h3>Real price:</h3></center>
+                              <center><button type="button" class="btn btn-primary">Next</button></center>
+                          </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
