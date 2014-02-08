@@ -39,7 +39,7 @@
             <li><a href="/contact">Contact</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://www.autotrader.co.uk" targer="_blank">Autotrader</a></li>
+            <li><a href="http://www.autotrader.co.uk" target="_blank">Autotrader</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -54,18 +54,17 @@
 
     </div><!-- /.container -->
     
-    </div>
     <!-- Images scroll. Blueimp -->
     <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-    <div id="blueimp-gallery" class="blueimp-gallery">
+    <div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
         <div class="slides"></div>
         <h3 class="title"></h3>
         <a class="prev">‹</a>
         <a class="next">›</a>
-        <a class="close">×</a>
         <a class="play-pause"></a>
         <ol class="indicator"></ol>
     </div>
+    
     <!-- The Gallery as lightbox dialog. End. -->
     <!-- Images -->
     <div id="links">
@@ -86,7 +85,6 @@
             <span class="badge"></span>
           </button>
           <a class="navbar-brand" href="#">Made by 'bina, Alex & Neha</a>
-          <a class
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -106,14 +104,13 @@
     
     <!-- javascript for lightbox gallery -->
     <script>
-    document.getElementById('links').onclick = function (event) {
-        event = event || window.event;
-        var target = event.target || event.srcElement,
-            link = target.src ? target.parentNode : target,
-            options = {index: link, event: event},
-            links = this.getElementsByTagName('a');
-        blueimp.Gallery(links, options);
-    };
-    </script>
+blueimp.Gallery(
+    document.getElementById('links').getElementsByTagName('a'),
+    {
+        container: '#blueimp-gallery-carousel',
+        carousel: true
+    }
+);
+</script>
   </body>
 </html>
