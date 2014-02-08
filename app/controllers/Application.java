@@ -31,7 +31,11 @@ public class Application extends Controller {
 //        for(String imageLink: images) {
 //            image = image + imageLink + "\n";
 //        }
-        return ok(index.render(images, advert.getPrice()));
+        return ok(index.render(images, advert.getId()));
     }
 
+    public static Result checkPrice(String id, int price) {
+        System.out.println(id+":"+price);
+        return ok("1000").as("text/plain");
+    }
 }
