@@ -19,16 +19,12 @@ import java.util.Random;
 import main.*;
 
 public class Application extends Controller {
-
-    public static Result index() {
-        return ok(index.render(new ArrayList<String>()));
-    }
    
     public static Result contact() {
         return ok(contact.render());
     }
 
-    public static Result images() {
+    public static Result index() {
         List<String> images = AutoTraderAPI.getAdvertImageLinks(AutoTraderAPI.getRandomAdvertId());
 //        String image = "";
 //        for(String imageLink: images) {
