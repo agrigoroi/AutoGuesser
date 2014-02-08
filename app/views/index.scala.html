@@ -1,50 +1,7 @@
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/img/favicon.ico">
-    <link rel="stylesheet" href="assets/stylesheets/blueimp-gallery.min.css">
-
-    <title>Starter Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
-    <link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/stylesheets/main.css" rel="stylesheet">
-
-  </head>
-
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">AutoGuesser</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://www.autotrader.co.uk" target="_blank">Autotrader</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-    
+    <!--Include header-->
+	@header()	
+	    
     <!-- Images scroll. Blueimp -->
     <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
     <div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
@@ -63,24 +20,15 @@
     <a href="assets/images/car2.jpg" title="Car2"> </a>
     </div>
     
+    <div class="row" align="center">
+    <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Enter price">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->	
     
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="assets/javascripts/bootstrap.min.js"></script>
-    <script src="assets/javascripts/blueimp-gallery.min.js"></script>
-    
-    <!-- javascript for lightbox gallery -->
-    <script>
-blueimp.Gallery(
-    document.getElementById('links').getElementsByTagName('a'),
-    {
-        container: '#blueimp-gallery-carousel',
-        carousel: true
-    }
-);
-</script>
-  </body>
-</html>
+@footer()
