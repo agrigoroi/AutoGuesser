@@ -3,10 +3,10 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import play.*;
 import play.libs.Json;
 import play.mvc.*;
-
 import views.html.*;
 
 import java.io.BufferedReader;
@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import main.*;
 
 public class Application extends Controller {
@@ -29,6 +30,18 @@ public class Application extends Controller {
     public static Result index() {
         Advert advert = AutoTraderAPI.getRandomAdvert();
         List<String> images = AutoTraderAPI.getAdvertImageLinks(advert.getId());
+        Mongo db;
+		try {
+			db = new Mongo();
+			String fake_id = db.insertAdvert(advert.getId(), advert.getPrice(), images);
+			int result = db.findAdvert("201401241261493");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+        
 //        String image = "";
 //        for(String imageLink: images) {
 //            image = image + imageLink + "\n";
