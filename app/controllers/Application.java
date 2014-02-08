@@ -31,6 +31,7 @@ public class Application extends Controller {
 //        for(String imageLink: images) {
 //            image = image + imageLink + "\n";
 //        }
+        if (images.isEmpty()) return index();
         return ok(index.render(images, advert.getPrice()));
     }
 
