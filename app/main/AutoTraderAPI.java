@@ -19,13 +19,14 @@ public class AutoTraderAPI {
     private static final String AUTO_TRADER_ACCESS_TOKEN = "yAELZNI2to-elvoxnf2PTWc6neStvwn-NqHfSP2WSqOfo7EFwu1Rk692UP8NomaCuk4LjwcbjcfttKdjZN8nly6bxE0zkpaWDOfEP_Y2yofx3ItuUvKFZ8EVCt23nSZzKhCp4GS6pUV1TH28yLK9N_1NxvVUPTzDoRIUyiVm0clXHhKYIvBdVmnQzx6H8aSuW09R8oJ5xqx9oJLkTC8ZTkCwgghomxQchDHZyagZowfAeCX1PKwkjVwAShCt7kgi";
     private static final Random random = new Random();
 //    public static String DEFAULT_IMAGES_URL = "http://pictures2.autotrader.co.uk/imgser-uk/servlet/media";
-private static final String ADVERT_BASE_URL = "http://www.autotrader.co.uk/classified/advert/";
+    private static final String ADVERT_BASE_URL = "http://www.autotrader.co.uk/classified/advert/";
     private static final String FIREFOX_USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0";
     private static final String GALLERY_DIV_ID = "fpa-showroom-thumbnails";
     private static final String BASE_IMAGE_URL = "http://pictures2.autotrader.co.uk/imgser-uk/servlet/media?id=";
-    private static final String SEARCH_URL = "http://www.autotrader.co.uk/search/used/cars/price-from/500/onesearchad/used%2Cnearlynew%2Cnew/page/";
-    private static final int IMAGE_WIDTH = 940;
-    private static final int IMAGE_HEIGHT = 400;
+    private static final String SEARCH_URL = "http://www.autotrader.co.uk/search/used/cars/postcode/m12bj/radius/1501/price-from/500/sort/locasc/page/";
+    private static final String SORT_PARAMETER = "";
+    private static final int IMAGE_HEIGHT = 800;
+    private static final int SEARCH_NUMBER_OF_PAGES = 1000;
 
     public static List<String> getAdvertImageLinks(String id) {
         try {
@@ -34,7 +35,7 @@ private static final String ADVERT_BASE_URL = "http://www.autotrader.co.uk/class
             List<String> toReturn = new ArrayList<String>();
             for(Element img: imgs) {
                 if(img.childNodeSize()>0)
-                    toReturn.add(BASE_IMAGE_URL + img.child(0).attr("data-imageid") + "&height=" + IMAGE_HEIGHT); //+ "&width=" + IMAGE_WIDTH 
+                    toReturn.add(BASE_IMAGE_URL + img.child(0).attr("data-imageid"));// + "&height=" + IMAGE_HEIGHT); //+ "&width=" + IMAGE_WIDTH
             }
             return toReturn;
         } catch (IOException e) {
@@ -66,23 +67,26 @@ private static final String ADVERT_BASE_URL = "http://www.autotrader.co.uk/class
 //        }
     }
 
-    public static String getRandomAdvertId() {
+    public static Advert getRandomAdvert() {
 //        return "201401191150754";
-        int pageNumber = random.nextInt(100) + 1;
+        int pageNumber = random.nextInt(SEARCH_NUMBER_OF_PAGES) + 1;
         try {
-            Document page = Jsoup.connect(SEARCH_URL + pageNumber).userAgent(FIREFOX_USER_AGENT).get();
+            Document page = Jsoup.connect(SEARCH_URL + pageNumber + SORT_PARAMETER).userAgent(FIREFOX_USER_AGENT).get();
             Elements divs = page.getElementsByClass("resultsWrapper").get(0).children();
-            List<String> advertIds = new ArrayList<String>();
+            List<Advert> adverts = new ArrayList<Advert>();
             for(Element div: divs) {
                 if(div.id().equals("")) {
                     for(Element car:div.children()) {
-                        if(car.id().contains("advert"))
-                            advertIds.add(car.id().replace("advert", ""));
+                        if(car.id().contains("advert")) {
+                            String id = car.id().replace("advert", "");
+                            Element priceElement = car.getElementsByClass("deal-price").get(0);
+                            String price = priceElement.html().replaceAll("\\D+", "");
+                            adverts.add(new Advert(id, Integer.parseInt(price)));
+                        }
                     }
-                };
+                }
              }
-
-            return advertIds.get(random.nextInt(advertIds.size()));
+            return adverts.get(random.nextInt(adverts.size()));
         } catch (IOException e) {
             e.printStackTrace();
             return null;

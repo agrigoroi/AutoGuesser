@@ -25,12 +25,13 @@ public class Application extends Controller {
     }
 
     public static Result index() {
-        List<String> images = AutoTraderAPI.getAdvertImageLinks(AutoTraderAPI.getRandomAdvertId());
+        Advert advert = AutoTraderAPI.getRandomAdvert();
+        List<String> images = AutoTraderAPI.getAdvertImageLinks(advert.getId());
 //        String image = "";
 //        for(String imageLink: images) {
 //            image = image + imageLink + "\n";
 //        }
-        return ok(index.render(images));
+        return ok(index.render(images, advert.getPrice()));
     }
 
 }
