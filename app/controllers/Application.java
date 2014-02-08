@@ -30,30 +30,19 @@ public class Application extends Controller {
     public static Result index() {
         Advert advert = AutoTraderAPI.getRandomAdvert();
         List<String> images = AutoTraderAPI.getAdvertImageLinks(advert.getId());
-        Mongo db;
-		try {
-			db = new Mongo();
-			String fake_id = db.insertAdvert(advert.getId(), advert.getPrice(), images);
-			int result = db.findAdvert("201401241261493");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-        
-//        String image = "";
-//        for(String imageLink: images) {
-//            image = image + imageLink + "\n";
-//        }
+	   String fake_id = Global.mongo.insertAdvert(advert.getId(), advert.getPrice(), images);
+//			int result = db.findAdvert("201401241261493");
         if (images.isEmpty()) return index();
-        return ok(index.render(images, advert.getId()));
+        return ok(index.render(images, fake_id));
     }
 
     public static Result checkPrice(String id, int price) {
         System.out.println(id + ":" + price);
+        Advert advert = Global.mongo.findAdvert(id);
         ObjectNode result = Json.newObject();
-        result.put("realPrice", 1000);
+//        result.put("advertUrl", AutoTraderAPI.)
+        result.put("realPrice", advert.getPrice());
+        result.put("url", AutoTraderAPI.BASE_ADVERT_URL+advert.getId());
         return ok(result);
     }
 }

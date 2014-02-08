@@ -27,6 +27,7 @@ public class AutoTraderAPI {
     private static final String SORT_PARAMETER = "";
     private static final int IMAGE_HEIGHT = 800;
     private static final int SEARCH_NUMBER_OF_PAGES = 1000;
+    public static final String BASE_ADVERT_URL = "http://www.autotrader.co.uk/classified/advert/";
 
     public static List<String> getAdvertImageLinks(String id) {
         try {

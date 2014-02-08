@@ -7,6 +7,8 @@ function setSpanHTML(id, value) {
     span.appendChild( document.createTextNode(value) );
 }
 
+var url;
+
 function checkPrice() {
 //    alert("HELLO");
     $.ajax({
@@ -16,9 +18,21 @@ function checkPrice() {
 //            alert(data);
             setSpanHTML("yourGuess", $('#price').val());
             setSpanHTML("realPrice", data.realPrice);
+            url = data.url;
         },
         error : function(data) {
             //TODO
         }
     });
-};
+}
+
+function viewAdvert() {
+    if(typeof url !== undefined)
+        window.location = url;
+}
+
+function nextRound() {
+    $('#price').val("");
+    location.reload(false);
+}
+
