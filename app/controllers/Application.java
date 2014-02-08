@@ -32,7 +32,7 @@ public class Application extends Controller {
 		try {
 			db = new Mongo();
 			String fake_id = db.insertAdvert(advert.getId(), advert.getPrice(), images);
-			int result = db.findAdvert("201401241261493");
+			//int result = db.findAdvert("201401241261493");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
