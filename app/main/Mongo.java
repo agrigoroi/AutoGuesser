@@ -9,12 +9,16 @@ import com.mongodb.DBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.ServerAddress;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
 
 public class Mongo 
 {
 	private DBCollection coll;
+	private SecureRandom random = new SecureRandom();
+	
 	public Mongo()throws Exception
 	{
 		MongoClient mongoClient = new MongoClient( "widmore.mongohq.com" , 10000 );
@@ -28,31 +32,32 @@ public class Mongo
 			throw new Exception();
 	}
 	
-	public void insertAdvert(String id, int price, List<String> links)
+	public String insertAdvert(String id, int price, List<String> links)
 	{
+		String rand = new BigInteger(40, random).toString();
 		BasicDBObject in = new BasicDBObject("id", id).
+							append("fake_id", rand).
 							append("price", price).
 							append("links", links);
 		coll.insert(in);
+		return rand;
 	}
 	
-	/*
-	public int findMongo(String search)
+	public int findAdvert(String search)
 	{
 		BasicDBObject query = new BasicDBObject("id", search);
 		
 		DBCursor cursor = coll.find(query);
-		DBO result;
-		
+				
 		try{
 			while(cursor.hasNext())
-				result = cursor.next().get("price");
+				query = (BasicDBObject)cursor.next();
 		}
 		finally{
 			cursor.close();
 		}
-		return result;		
-	}// End findMongo */
-	
+		
+		return (int)query.get("price");
+	}// End findMongo 
 	
 }

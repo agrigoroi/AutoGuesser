@@ -31,11 +31,14 @@ public class Application extends Controller {
         Mongo db;
 		try {
 			db = new Mongo();
-			db.insertAdvert(advert.getId(), advert.getPrice(), images);
+			String fake_id = db.insertAdvert(advert.getId(), advert.getPrice(), images);
+			int result = db.findAdvert("201401241261493");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
         
 //        String image = "";
 //        for(String imageLink: images) {
