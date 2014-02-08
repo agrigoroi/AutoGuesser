@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/img/favicon.ico">
+    <link rel="stylesheet" href="assets/stylesheets/blueimp-gallery.min.css">
 
     <title>Starter Template for Bootstrap</title>
 
@@ -53,12 +54,46 @@
       </div>
 
     </div><!-- /.container -->
-
-
+    
+    </div>
+    <!-- Images scroll. Blueimp -->
+    <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+    <div id="blueimp-gallery" class="blueimp-gallery">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+    </div>
+    <!-- The Gallery as lightbox dialog. End. -->
+    <!-- Images -->
+    <div id="links">
+    <a href="assets/images/car1.jpg" title="Car1">
+        <img src="assets/images/car1.jpg" alt="Car1">
+    </a>
+    <a href="assets/images/car2.jpg" title="Car2">
+        <img src="assets/images/car2.jpg" alt="Car2">
+    </a>
+    </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="assets/javascripts/bootstrap.min.js"></script>
+    <script src="assets/javascripts/blueimp-gallery.min.js"></script>
+    
+    <!-- javascript for lightbox gallery -->
+    <script>
+    document.getElementById('links').onclick = function (event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement,
+            link = target.src ? target.parentNode : target,
+            options = {index: link, event: event},
+            links = this.getElementsByTagName('a');
+        blueimp.Gallery(links, options);
+    };
+    </script>
   </body>
 </html>
