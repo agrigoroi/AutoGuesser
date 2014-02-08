@@ -15,7 +15,7 @@ function checkPrice() {
         success : function(data) {
 //            alert(data);
             setSpanHTML("yourGuess", $('#price').val());
-            setSpanHTML("realPrice", data);
+            setSpanHTML("realPrice", data.realPrice);
         },
         error : function(data) {
             //TODO

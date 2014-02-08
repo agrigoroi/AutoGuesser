@@ -2,7 +2,9 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.*;
+import play.libs.Json;
 import play.mvc.*;
 
 import views.html.*;
@@ -35,7 +37,9 @@ public class Application extends Controller {
     }
 
     public static Result checkPrice(String id, int price) {
-        System.out.println(id+":"+price);
-        return ok("1000").as("text/plain");
+        System.out.println(id + ":" + price);
+        ObjectNode result = Json.newObject();
+        result.put("realPrice", 1000);
+        return ok(result);
     }
 }
