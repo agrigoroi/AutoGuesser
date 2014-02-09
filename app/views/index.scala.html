@@ -57,6 +57,20 @@
                       </div>
                     </div>
                 </div>
+                <div id="endGameModal" class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <center><h3>Your guess: <span id="yourGuess2"></span></h3></center>
+                            <center><h3>Real price: <span id="realPrice2"></span></h3></center>
+                            <center><h2>Congratulation, You obtained <span id="totalScore"></span> points. Can you improve it?</h2></center>
+                            <br>
+                            <center><button type="button" class="btn btn-primary" onclick="viewAdvert()">Buy this car</button></center>
+                            <br>
+                            <center><button type="button" class="btn btn-primary" onclick="nextRound()">Play Again</button></center>
+                            <br>
+                        </div>
+                    </div>
+                </div>
           <hr>
             	<center>
                     <button type="button" class="btn btn-primary not-visible" onclick="viewAdvert()">Buy this car</button>
