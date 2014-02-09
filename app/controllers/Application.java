@@ -42,7 +42,9 @@ public class Application extends Controller {
             Global.mongo.insertPlayer(player);
         }
         if(player.getNumberOfGames() >= 10) {
+            String name = player.getName();
             player = new Player();
+            player.setName(name);
             Global.mongo.insertPlayer(player);
         }
         response().setCookie("user", player.getId());
@@ -101,7 +103,12 @@ public class Application extends Controller {
     
     public static Result reset()
     {
-    	Player player = new Player();
+        Player player = Global.mongo.findPlayer(request().cookie("user").value());
+        String name = null;
+        if(player != null)
+            name = player.getName();
+    	player = new Player();
+        player.setName(name);
         Global.mongo.insertPlayer(player);
         response().setCookie("user", player.getId());
     	return redirect(routes.Application.index());
