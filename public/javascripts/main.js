@@ -1,3 +1,6 @@
+var score = 0;
+var game = 0;
+
 function setSpanHTML(id, value) {
     var span = document.getElementById(id);
 
@@ -19,6 +22,9 @@ function checkPrice() {
             setSpanHTML("yourGuess", $('#price').val());
             setSpanHTML("realPrice", data.realPrice);
             url = data.url;
+            game++;
+            score += $('#price').val();
+            setSpanHTML("yourScore", score);
         },
         error : function(data) {
             //TODO
