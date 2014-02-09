@@ -1,5 +1,10 @@
 var score = 0;
 var game = 0;
+var submited = false;
+document.getElementById("price").disabled = false;
+document.getElementById("price").readOnly = false;
+$('#SubmitPrice').prop('disabled', false);
+
 
 function setSpanHTML(id, value) {
     var span = document.getElementById(id);
@@ -14,13 +19,19 @@ var url;
 
 function checkPrice() {
 //    alert("HELLO");
+    if(submited)
+        return false;
     $.ajax({
         type : 'GET',
         url : "/check/" + $('#advertId').html() + "/" + $('#price').val(),
         success : function(data) {
+            submited = true;
+            $('#SubmitPrice').prop('disabled', true);
+            document.getElementById("price").disabled = true;
+            document.getElementById("price").readOnly = true;
             $('.not-visible').removeClass("not-visible");
             setSpanHTML("priceFeedback", "");
-            if(data.round < 11) {
+            if(data.round < 10) {
                 setSpanHTML("yourGuess", $('#price').val());
                 setSpanHTML("realPrice", data.realPrice);
                 url = data.url;

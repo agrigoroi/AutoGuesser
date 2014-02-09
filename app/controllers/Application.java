@@ -41,7 +41,7 @@ public class Application extends Controller {
             player = new Player();
             Global.mongo.insertPlayer(player);
         }
-        if(player.getNumberOfGames() > 10) {
+        if(player.getNumberOfGames() >= 10) {
             player = new Player();
             Global.mongo.insertPlayer(player);
         }
@@ -49,9 +49,14 @@ public class Application extends Controller {
         return player;
     }
 
+    private static int min(int a, int b) {
+        return a<b?a:b;
+    }
+
     private static int calculateScore(int guess, int price) {
         if(guess > price)
             guess = 2*price - guess; //TODO make sure that its right...
+        if(guess <= 0) guess = 1;
         return (guess*10-1)/price+1;
     }
 
@@ -70,6 +75,10 @@ public class Application extends Controller {
         Player player = getPlayer();
         player.setNumberOfGames(player.getNumberOfGames() + 1);
         Advert advert = Global.mongo.findAdvert(id);
+        if(advert == null) {
+            return badRequest();
+        }
+        Global.mongo.deleteAdvert(id);
         player.setTotalScore(player.getTotalScore() + calculateScore(price, advert.getPrice()));
         Global.mongo.insertPlayer(player);
         ObjectNode result = Json.newObject();

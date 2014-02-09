@@ -29,11 +29,11 @@
 
 
             <div class="col-md-3">
-               	<div class ="thumbnail">
+               	<div class ="thumbnail" id="scoreBoard">
         		<center><h2>Scoreboard</h2></center>
         		<hr>
             	<h3>Current Score:<span id="yourScore"> @player.getTotalScore()</span></h3>
-                <h3>Round:<span id="roundNumber"></span> @player.getNumberOfGames()/10</h3>
+                <h3>Round:<span id="roundNumber"></span> @(player.getNumberOfGames()+1)/10</h3>
             
                 <form class ="form-inline"  onsubmit="return checkPrice()">
                     <div class="form-group">
