@@ -17,6 +17,7 @@ import java.util.List;
 public class Mongo 
 {
 	private DBCollection coll;
+	private DBCollection coll1;
 	private SecureRandom random = new SecureRandom();
 	
 	public Mongo()throws Exception
@@ -27,7 +28,9 @@ public class Mongo
 		boolean auth = db.authenticate("studenthack", "jkgfhjgfdojnglegjdso".toCharArray());
 		
 		if(auth)		
-			coll = db.getCollection("advert");
+			{  coll = db.getCollection("advert");
+				coll1 = db.getCollection("players");
+			}
 		else
 			throw new Exception();
 	}
@@ -60,4 +63,44 @@ public class Mongo
 		return new Advert((String)query.get("id"),(Integer)query.get("price"));
 	}// End findMongo 
 	
+	public String insertPlayer(Player object)
+	{
+		Player rey = findPlayer(object.getId());
+		if( rey != null)
+			deletePlayer(object.getId());
+		
+		 BasicDBObject in = new BasicDBObject ("cookie", object.getId()).
+				 							append("name", object.getName()).
+				 							append("score", object.getTotalScore()).
+				 							append("#games", object.getNumberOfGames());
+		 coll1.insert(in);
+		 return object.getId();
+	}// End insertPLayer
+	
+	public Player findPlayer(String cookie)
+	{
+		BasicDBObject query = new BasicDBObject("cookie", cookie);
+		DBCursor cursor = coll.find(query);
+		
+		try{
+			if(cursor.hasNext())
+				query = (BasicDBObject)cursor.next();
+			else
+			{
+				cursor.close();
+				return null;
+			}
+		}
+		finally{
+			cursor.close();
+		}
+		
+		return new Player((String)query.get("name"),(String)query.get("cookie"), (Integer)query.get("score"), (Integer)query.get("#games"));
+	}
+	
+	public void deletePlayer(String cookie)
+	{
+		BasicDBObject query = new BasicDBObject("cookie", cookie);
+		coll.findAndRemove(query);
+	}
 }
