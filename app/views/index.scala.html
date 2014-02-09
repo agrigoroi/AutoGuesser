@@ -40,22 +40,23 @@
                 <form class ="form-inline"  onsubmit="return checkPrice()">
                     <div class="form-group">
                         <label class="sr-only" for="priceInput">Car price guess</label>
-                        <input style="width: 9em;" type="number" class="form-control" id="price" placeholder="Enter price £">
+                        <input style="width: 9em;" type="number" class="form-control" id="price" placeholder="Price £">
                     </div>
                     <button type="button" class="btn btn-primary" id="SubmitPrice" onclick="checkPrice()">Check!</button>
                     <br>
                     <span id="priceFeedback" class="help-block"></span>
                 </form>
+                <center><a href = "/reset"><button type="button" class="btn btn-primary">New Game</button></a></center>
+                          
                 <div id="resultModal" class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-sm">
                       <div class="modal-content">
                           <center><h3>Your guess: <span id="yourGuess"></span></h3></center>
                           <center><h3>Real price: <span id="realPrice"></span></h3></center>
                           <center><h3>Score for this round: <span id="roundScore"></span></h3></center>
-                          <br>
                           <center><button type="button" class="btn btn-primary" onclick="viewAdvert()">Buy this car</button></center>
                           <br>
-                          <center><button type="button" class="btn btn-primary" onclick="nextRound()">Next</button></center>
+                          <center><button type="button" class="btn btn-primary" onclick="nextRound()">Next Round</button></center>
                           <br>
                       </div>
                     </div>
@@ -79,7 +80,7 @@
           <hr>
             	<center>
                     <button type="button" class="btn btn-primary not-visible" onclick="viewAdvert()">Buy this car</button>
-            	    <button type="button" class="btn btn-primary not-visible" onclick="nextRound()">Next</button>
+            	    <button type="button" class="btn btn-primary not-visible" onclick="nextRound()">Next Round</button>
                 </center>
                 
                 To avoid being named as a random string, please enter your name below:

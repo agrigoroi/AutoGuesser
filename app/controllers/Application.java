@@ -98,5 +98,13 @@ public class Application extends Controller {
     	Global.mongo.insertPlayer(player);
     	return ok();
     }
+    
+    public static Result reset()
+    {
+    	Player player = new Player();
+        Global.mongo.insertPlayer(player);
+        response().setCookie("user", player.getId());
+    	return redirect(routes.Application.index());
+    }
  
 }
