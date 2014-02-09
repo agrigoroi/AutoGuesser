@@ -41,6 +41,10 @@ public class Application extends Controller {
         return player;
     }
 
+    private static int min(int a, int b) {
+        return a<b?a:b;
+    }
+
     private static int calculateScore(int guess, int price) {
         if(guess > price)
             guess = 2*price - guess; //TODO make sure that its right...
@@ -63,6 +67,10 @@ public class Application extends Controller {
         Player player = getPlayer();
         player.setNumberOfGames(player.getNumberOfGames() + 1);
         Advert advert = Global.mongo.findAdvert(id);
+        if(advert == null) {
+            return badRequest();
+        }
+        Global.mongo.deleteAdvert(id);
         player.setTotalScore(player.getTotalScore() + calculateScore(price, advert.getPrice()));
         Global.mongo.insertPlayer(player);
         ObjectNode result = Json.newObject();
