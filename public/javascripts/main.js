@@ -34,6 +34,7 @@ function checkPrice() {
             if(data.round < 10) {
                 setSpanHTML("yourGuess", $('#price').val());
                 setSpanHTML("realPrice", data.realPrice);
+                setSpanHTML("roundScore", data.roundScore);
                 url = data.url;
                 $('#resultModal').modal('toggle');
             } else {
