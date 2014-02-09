@@ -79,13 +79,15 @@ public class Application extends Controller {
             return badRequest();
         }
         Global.mongo.deleteAdvert(id);
-        player.setTotalScore(player.getTotalScore() + calculateScore(price, advert.getPrice()));
+        int ScoreRound = calculateScore(price, advert.getPrice());
+        player.setTotalScore(player.getTotalScore() + ScoreRound);
         Global.mongo.insertPlayer(player);
         ObjectNode result = Json.newObject();
         result.put("realPrice", advert.getPrice());
         result.put("url", AutoTraderAPI.BASE_ADVERT_URL+advert.getId());
         result.put("score", player.getTotalScore());
         result.put("round", player.getNumberOfGames());
+        result.put("roundScore",ScoreRound);
         return ok(result);
     }
     
