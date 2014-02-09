@@ -33,6 +33,10 @@ public class Application extends Controller {
             player = new Player();
             Global.mongo.insertPlayer(player);
         }
+        if(player.getNumberOfGames() > 10) {
+            player = new Player();
+            Global.mongo.insertPlayer(player);
+        }
         response().setCookie("user", player.getId());
         return player;
     }
@@ -61,9 +65,10 @@ public class Application extends Controller {
         player.setTotalScore(player.getTotalScore() + calculateScore(price, advert.getPrice()));
         Global.mongo.insertPlayer(player);
         ObjectNode result = Json.newObject();
-//        result.put("advertUrl", AutoTraderAPI.)
         result.put("realPrice", advert.getPrice());
         result.put("url", AutoTraderAPI.BASE_ADVERT_URL+advert.getId());
+        result.put("score", player.getTotalScore());
+        result.put("round", player.getNumberOfGames());
         return ok(result);
     }
 }
