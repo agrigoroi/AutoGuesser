@@ -31,7 +31,7 @@ function checkPrice() {
             document.getElementById("price").readOnly = true;
             $('.not-visible').removeClass("not-visible");
             setSpanHTML("priceFeedback", "");
-            if(data.round < 11) {
+            if(data.round < 10) {
                 setSpanHTML("yourGuess", $('#price').val());
                 setSpanHTML("realPrice", data.realPrice);
                 url = data.url;
