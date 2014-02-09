@@ -8,11 +8,13 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.ServerAddress;
+
 import model.Advert;
 import model.Player;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mongo 
@@ -52,16 +54,22 @@ public class Mongo
 		
 		DBCursor cursor = advertCollection.find(query);
 				
-		try{
-			while(cursor.hasNext())
-				query = (BasicDBObject)cursor.next();
-		}
-		finally{
-			cursor.close();
-		}
+		if(cursor.hasNext()) {
+            query = (BasicDBObject)cursor.next();
+            cursor.close();
+        } else {
+            cursor.close();
+            return null;
+        }
 		
 		return new Advert((String)query.get("id"),(Integer)query.get("price"));
 	}// End findMongo 
+	
+	public void deleteAdvert(String search)
+	{
+		BasicDBObject query = new BasicDBObject("fake_id", search);
+		advertCollection.findAndRemove(query);
+	}
 	
 	public String insertPlayer(Player object)
 	{
@@ -97,4 +105,22 @@ public class Mongo
 		BasicDBObject query = new BasicDBObject("cookie", cookie);
 		playerCollection.findAndRemove(query);
 	}
+	
+	public ArrayList<Player> leaderboard()
+	{
+		ArrayList<Player> top10 = new ArrayList<Player>();
+		BasicDBObject query = new BasicDBObject();
+		DBCursor cursor = playerCollection.find(query);
+		cursor.sort(new BasicDBObject("score", -1));
+			
+		int i =0;
+		while(cursor.hasNext() && i<10)
+		{
+			query = (BasicDBObject)cursor.next();
+			top10.add(new Player((String)query.get("name"),(String)query.get("cookie"), (Integer)query.get("score"), (Integer)query.get("#games")));
+		}
+		return top10;
+	}
+	
+	
 }
