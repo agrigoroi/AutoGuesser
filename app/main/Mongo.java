@@ -43,7 +43,7 @@ public class Mongo
 		return rand;
 	}
 	
-	public int findAdvert(String search)
+	public Advert findAdvert(String search)
 	{
 		BasicDBObject query = new BasicDBObject("fake_id", search);
 		
@@ -57,7 +57,7 @@ public class Mongo
 			cursor.close();
 		}
 		
-		return (Integer)query.get("price");
+		return new Advert((String)query.get("id"),(Integer)query.get("price"));
 	}// End findMongo 
 	
 }
