@@ -9,6 +9,7 @@ import com.mongodb.DBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.ServerAddress;
 import model.Advert;
+import model.Player;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -16,22 +17,21 @@ import java.util.List;
 
 public class Mongo 
 {
-	private DBCollection coll;
-	private DBCollection coll1;
+	private DBCollection advertCollection;
+	private DBCollection playerCollection;
 	private SecureRandom random = new SecureRandom();
 	
 	public Mongo()throws Exception
 	{
 		MongoClient mongoClient = new MongoClient( "widmore.mongohq.com" , 10000 );
-		DB db = mongoClient.getDB( "StudentHack" );
+		DB db = mongoClient.getDB("StudentHack");
 		
 		boolean auth = db.authenticate("studenthack", "jkgfhjgfdojnglegjdso".toCharArray());
 		
-		if(auth)		
-			{  coll = db.getCollection("advert");
-				coll1 = db.getCollection("players");
-			}
-		else
+		if(auth){
+            advertCollection = db.getCollection("advert");
+			playerCollection = db.getCollection("players");
+        } else
 			throw new Exception();
 	}
 	
@@ -42,7 +42,7 @@ public class Mongo
 							append("fake_id", rand).
 							append("price", price).
 							append("links", links);
-		coll.insert(in);
+		advertCollection.insert(in);
 		return rand;
 	}
 	
@@ -50,7 +50,7 @@ public class Mongo
 	{
 		BasicDBObject query = new BasicDBObject("fake_id", search);
 		
-		DBCursor cursor = coll.find(query);
+		DBCursor cursor = advertCollection.find(query);
 				
 		try{
 			while(cursor.hasNext())
@@ -73,34 +73,28 @@ public class Mongo
 				 							append("name", object.getName()).
 				 							append("score", object.getTotalScore()).
 				 							append("#games", object.getNumberOfGames());
-		 coll1.insert(in);
+		 playerCollection.insert(in);
 		 return object.getId();
 	}// End insertPLayer
 	
 	public Player findPlayer(String cookie)
 	{
 		BasicDBObject query = new BasicDBObject("cookie", cookie);
-		DBCursor cursor = coll.find(query);
-		
-		try{
-			if(cursor.hasNext())
-				query = (BasicDBObject)cursor.next();
-			else
-			{
-				cursor.close();
-				return null;
-			}
-		}
-		finally{
-			cursor.close();
-		}
-		
+		DBCursor cursor = playerCollection.find(query);
+
+        if(cursor.hasNext()) {
+            query = (BasicDBObject)cursor.next();
+            cursor.close();
+        } else {
+            cursor.close();
+            return null;
+        }
 		return new Player((String)query.get("name"),(String)query.get("cookie"), (Integer)query.get("score"), (Integer)query.get("#games"));
 	}
 	
 	public void deletePlayer(String cookie)
 	{
 		BasicDBObject query = new BasicDBObject("cookie", cookie);
-		coll.findAndRemove(query);
+		playerCollection.findAndRemove(query);
 	}
 }
