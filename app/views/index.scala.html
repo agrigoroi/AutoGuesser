@@ -5,35 +5,39 @@
     <div id="advertId" style="display: none;">@advertId</div>
 	    
     <!-- Images scroll. Blueimp -->
-    <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
-                    <div class="slides"></div>
-                    <h3 class="title"></h3>
-                    <a class="prev">‹</a>
-                    <a class="next">›</a>
-                    <a class="play-pause"></a>
-                    <ol class="indicator"></ol>
-                </div>
-
-                <!-- The Gallery as lightbox dialog. End. -->
-                <!-- Images -->
-                <div id="links">
-                    @for(image <- images) {
-                       <a href="@image" title="Car1"> </a>
-                    }
-                </div>
+<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+    <div class="row">
+        <div class="col-md-9">
+            <div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
             </div>
+                        <!-- The Gallery as lightbox dialog. End. -->
+            <!-- Images -->
+            <div id="links">
+                @for(image <- images) {
+                   <a href="@image"> </a>
+                }
+        	</div>
+        </div> <!--End carousel-->
+            
+
+
             <div class="col-md-3">
-                <h4>Current Score:</h4>
-                <p>You have obtained @player.getTotalScore() points in @player.getNumberOfGames() rounds</p>
-                <p>Your average score per round is @(player.getTotalScore()*1.0/player.getNumberOfGames()) points</p>
+               	<div class ="thumbnail">
+        		<center><h2>Scoreboard</h2></center>
+        		<hr>
+            	<h3>Current Score:<span id="yourScore"> @player.getTotalScore()</span></h3>
+                <h3>Round:<span id="roundNumber"></span> @player.getNumberOfGames()/10</h3>
+            
                 <form class ="form-inline"  onsubmit="return checkPrice()">
                     <div class="form-group">
                         <label class="sr-only" for="priceInput">Car price guess</label>
-                        <input style="width: 9em;" type="number" class="form-control" id="price" placeholder="Enter price">
+                        <input style="width: 9em;" type="number" class="form-control" id="price" placeholder="Enter price £">
                     </div>
                     <button type="button" class="btn btn-primary" id="SubmitPrice" onclick="checkPrice()">Check!</button>
                     <br>
@@ -44,13 +48,22 @@
                       <div class="modal-content">
                           <center><h3>Your guess: <span id="yourGuess"></span></h3></center>
                           <center><h3>Real price: <span id="realPrice"></span></h3></center>
+                          <br>
                           <center><button type="button" class="btn btn-primary" onclick="viewAdvert()">Buy this car</button></center>
+                          <br>
                           <center><button type="button" class="btn btn-primary" onclick="nextRound()">Next</button></center>
+                          <br>
                       </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+          <hr>
+            	<center><button type="button" class="btn btn-primary" onclick="viewAdvert()">Buy this car</button>
+            	<button type="button" class="btn btn-primary" onclick="nextRound()">Next</button></center>
+        	</div> <!--End thumbnail-->
+        </div> <!--End scoreboard-->
+    </div><!--End row-->
+
+        
+                 
    	
 @footer()
