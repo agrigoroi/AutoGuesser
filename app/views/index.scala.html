@@ -33,7 +33,7 @@
         		<center><h2>Scoreboard</h2></center>
         		<hr>
             	<h3>Current Score:<span id="yourScore"> @player.getTotalScore()</span></h3>
-                <a href="https://twitter.com/intent/tweet?button_hashtag=AutoGuesser" class="twitter-hashtag-button" data-text="I have obtained @player.getTotalScore() points on AutoGuesser.com. Can you do better?">Tweet #TwitterStories</a>
+                <center><a href="https://twitter.com/intent/tweet?button_hashtag=AutoGuesser" class="twitter-hashtag-button" data-text="I have obtained @player.getTotalScore() points on AutoGuesser.com. Can you do better?">Tweet #TwitterStories</a></center>
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                 <h3>Round:<span id="roundNumber"></span> @(player.getNumberOfGames()+1)/10</h3>
             
@@ -86,10 +86,16 @@
                         <input value="@player.getName()" type="text" class="form-control" id="name" placeholder="Enter Name">
                     </div>
                     <center><button type="button" class="btn btn-primary" id="SubmitName" onclick="submitName()">Update Name</button></center>
-                
+
+
+
         	</div> <!--End thumbnail-->
         </div> <!--End scoreboard-->
     </div><!--End row-->
+    <div id="alertbar" class="alert alert-info alert-dismissable not-visible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="$('#alerbar').show()">&times;</button>
+        Great, Name updated
+    </div>
 
         
                  

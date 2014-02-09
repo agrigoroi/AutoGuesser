@@ -61,8 +61,16 @@ function submitName() {
 	var name = $('#name').val();
 	$.ajax({
 	type : 'GET',
-        url : "/changeName/" + name});
+        url : "/changeName/" + name,
+        success: function(data) {
+            $('#alertbar').show();
+        }
+    });
 }
+
+$('.close').click(function () {
+    $(this).parent().removeClass('in'); // hides alert with Bootstrap CSS3 implementation
+});
 
 function nextRound() {
     $('#price').val("");
