@@ -76,6 +76,13 @@
                     <button type="button" class="btn btn-primary not-visible" onclick="viewAdvert()">Buy this car</button>
             	    <button type="button" class="btn btn-primary not-visible" onclick="nextRound()">Next</button>
                 </center>
+                
+                To avoid being named as a random string, please enter your name below:
+                <div class="form-group">
+                        <input value="@player.getName()" type="text" class="form-control" id="name" placeholder="Enter Name">
+                    </div>
+                    <center><button type="button" class="btn btn-primary" id="SubmitName" onclick="submitName()">Update Name</button></center>
+                
         	</div> <!--End thumbnail-->
         </div> <!--End scoreboard-->
     </div><!--End row-->
