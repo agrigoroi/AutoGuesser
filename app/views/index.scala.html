@@ -1,5 +1,6 @@
-@(images: List[String], advertId: String)
-    <!--Include header-->
+@(images: List[String], advertId: String, player: model.Player)
+
+<!--Include header-->
 	@header()
     <div id="advertId" style="display: none;">@advertId</div>
 	    
@@ -27,7 +28,8 @@
             </div>
             <div class="col-md-3">
                 <h4>Current Score:</h4>
-                <span id="yourScore"></span>
+                <p>You have obtained @player.getTotalScore() points in @player.getNumberOfGames() rounds</p>
+                <p>Your average score per round is @(player.getTotalScore()*1.0/player.getNumberOfGames()) points</p>
                 <form class ="form-inline" role="form">
                     <div class="form-group">
                         <label class="sr-only" for="priceInput">Car price guess</label>

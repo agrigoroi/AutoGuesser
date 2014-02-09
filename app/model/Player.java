@@ -1,20 +1,33 @@
-package main;
+package model;
+
+import java.util.Random;
 
 /**
  * Created by Alexandru Grigoroi on 09/02/14.
  */
 public class Player {
+
+    private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final Random rnd = new Random();
+
     private String name;
     private String id;
     private int totalScore;
     private int numberOfGames;
 
     private static String getRandomName() {
-        return "HI";
+        return generateRandomString(8);
+    }
+
+    private static String generateRandomString(int length) {
+        StringBuilder sb = new StringBuilder(length);
+        for( int i = 0; i < length; i++ )
+                sb.append(AB.charAt(rnd.nextInt(AB.length())));
+        return sb.toString();
     }
 
     private static String generateCookie() {
-        return "hello";
+        return generateRandomString(30);
     }
 
     public Player() {
@@ -45,5 +58,13 @@ public class Player {
 
     public int getNumberOfGames() {
         return numberOfGames;
+    }
+
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
+    }
+
+    public void setNumberOfGames(int numberOfGames) {
+        this.numberOfGames = numberOfGames;
     }
 }
