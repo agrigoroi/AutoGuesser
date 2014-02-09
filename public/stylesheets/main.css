@@ -11,6 +11,10 @@ footer {
         color: #00994C;
 }
 
+#scoreBoard {
+    background-color: #d9534f;
+}
+
 .not-visible {
     display: none;
 }
