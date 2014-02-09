@@ -24,6 +24,7 @@ function checkPrice() {
             setSpanHTML("priceFeedback", "");
             url = data.url;
             $('#resultModal').modal('toggle');
+            $('.not-visible').removeClass("not-visible");
         },
         error : function(data) {
             setSpanHTML("priceFeedback", "Price should be a number");

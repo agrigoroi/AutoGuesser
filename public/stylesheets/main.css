@@ -10,3 +10,8 @@ footer {
 	margin: 50px 0;
 }
 
+.not-visible {
+    display: none;
+}
+
+
