@@ -30,26 +30,25 @@
                 <h4>Current Score:</h4>
                 <p>You have obtained @player.getTotalScore() points in @player.getNumberOfGames() rounds</p>
                 <p>Your average score per round is @(player.getTotalScore()*1.0/player.getNumberOfGames()) points</p>
-                <form class ="form-inline" role="form">
+                <form class ="form-inline"  onsubmit="return checkPrice()">
                     <div class="form-group">
                         <label class="sr-only" for="priceInput">Car price guess</label>
-                        <input style="width: 9em;" type="number" step="100" class="form-control input-xsmall" id="price" placeholder="Enter price">
+                        <input style="width: 9em;" type="number" class="form-control" id="price" placeholder="Enter price">
                     </div>
-                    
-                    <a href="#" data-toggle="modal" data-target=".bs-modal-sm">
-                        <button type="button" class="btn btn-primary" id="SubmitPrice" onclick="checkPrice()">Check!</button>
-                    </a>
-                    <div class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                          <div class="modal-content">
-                              <center><h3>Your guess: <span id="yourGuess"></span></h3></center>
-                              <center><h3>Real price: <span id="realPrice"></span></h3></center>
-                              <center><button type="button" class="btn btn-primary" onclick="viewAdvert()">Buy this car</button></center>
-                              <center><button type="button" class="btn btn-primary" onclick="nextRound()">Next</button></center>
-                          </div>
-                        </div>
-                    </div>
+                    <button type="button" class="btn btn-primary" id="SubmitPrice" onclick="checkPrice()">Check!</button>
+                    <br>
+                    <span id="priceFeedback" class="help-block"></span>
                 </form>
+                <div id="resultModal" class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                          <center><h3>Your guess: <span id="yourGuess"></span></h3></center>
+                          <center><h3>Real price: <span id="realPrice"></span></h3></center>
+                          <center><button type="button" class="btn btn-primary" onclick="viewAdvert()">Buy this car</button></center>
+                          <center><button type="button" class="btn btn-primary" onclick="nextRound()">Next</button></center>
+                      </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

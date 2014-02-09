@@ -21,15 +21,16 @@ function checkPrice() {
 //            alert(data);
             setSpanHTML("yourGuess", $('#price').val());
             setSpanHTML("realPrice", data.realPrice);
+            setSpanHTML("priceFeedback", "");
             url = data.url;
-            game++;
-            score += $('#price').val();
-            setSpanHTML("yourScore", score);
+            $('#resultModal').modal('toggle');
         },
         error : function(data) {
+            setSpanHTML("priceFeedback", "Price should be a number");
             //TODO
         }
     });
+    return false;
 }
 
 function viewAdvert() {
