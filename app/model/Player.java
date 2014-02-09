@@ -67,4 +67,8 @@ public class Player {
     public void setNumberOfGames(int numberOfGames) {
         this.numberOfGames = numberOfGames;
     }
+    
+    public void setName(String name){
+    	this.name = name;
+    }
 }

@@ -57,6 +57,13 @@ function viewAdvert() {
         window.location = url;
 }
 
+function submitName() {
+	var name = $('#name').val();
+	$.ajax({
+	type : 'GET',
+        url : "/changeName/" + name});
+}
+
 function nextRound() {
     $('#price').val("");
     location.reload(false);

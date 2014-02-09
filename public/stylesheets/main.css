@@ -8,6 +8,11 @@ body-round {
 
 footer {
 	margin: 50px 0;
+        color: #00994C;
+}
+
+#scoreBoard {
+    background-color: #d9534f;
 }
 
 .not-visible {

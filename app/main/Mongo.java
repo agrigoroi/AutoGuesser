@@ -116,6 +116,7 @@ public class Mongo
 		int i =0;
 		while(cursor.hasNext() && i<10)
 		{
+			i++;
 			query = (BasicDBObject)cursor.next();
 			top10.add(new Player((String)query.get("name"),(String)query.get("cookie"), (Integer)query.get("score"), (Integer)query.get("#games")));
 		}

@@ -29,7 +29,7 @@
 
 
             <div class="col-md-3">
-               	<div class ="thumbnail">
+               	<div class ="thumbnail" id="scoreBoard">
         		<center><h2>Scoreboard</h2></center>
         		<hr>
             	<h3>Current Score:<span id="yourScore"> @player.getTotalScore()</span></h3>
@@ -70,6 +70,8 @@
                             <br>
                             <center><button type="button" class="btn btn-primary" onclick="nextRound()">Play Again</button></center>
                             <br>
+                            <center><a href="/rules"><button type="button" class="btn btn-primary">Leaderboard</button></a></center>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -78,6 +80,13 @@
                     <button type="button" class="btn btn-primary not-visible" onclick="viewAdvert()">Buy this car</button>
             	    <button type="button" class="btn btn-primary not-visible" onclick="nextRound()">Next</button>
                 </center>
+                
+                To avoid being named as a random string, please enter your name below:
+                <div class="form-group">
+                        <input value="@player.getName()" type="text" class="form-control" id="name" placeholder="Enter Name">
+                    </div>
+                    <center><button type="button" class="btn btn-primary" id="SubmitName" onclick="submitName()">Update Name</button></center>
+                
         	</div> <!--End thumbnail-->
         </div> <!--End scoreboard-->
     </div><!--End row-->

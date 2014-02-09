@@ -8,7 +8,10 @@ import play.libs.Json;
 import play.mvc.*;
 import views.html.*;
 
+import java.util.ArrayList;
 import java.util.List;
+
+
 
 import main.*;
 
@@ -19,7 +22,12 @@ public class Application extends Controller {
     }
     
     public static Result rules() {
-        return ok(rules.render());
+    	ArrayList<Player> toDisplay = Global.mongo.leaderboard();
+    	// Convert into JSON array
+    	
+    	//JSONArray array = new JSONArray(toDisplay);
+    	return ok(rules.render(toDisplay));
+        
     }
 
     private static Player getPlayer() {
@@ -80,4 +88,13 @@ public class Application extends Controller {
         result.put("round", player.getNumberOfGames());
         return ok(result);
     }
+    
+    public static Result submitName(String name)
+    {
+    	Player player = getPlayer();
+    	player.setName(name);
+    	Global.mongo.insertPlayer(player);
+    	return ok();
+    }
+ 
 }
