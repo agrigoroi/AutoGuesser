@@ -14,7 +14,7 @@ public class Player {
     }
 
     private static String generateCookie() {
-        
+        return "hello";
     }
 
     public Player() {
