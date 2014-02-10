@@ -11,6 +11,7 @@ import com.mongodb.ServerAddress;
 
 import model.Advert;
 import model.Player;
+import main.MongoSecret;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -25,10 +26,10 @@ public class Mongo
 	
 	public Mongo()throws Exception
 	{
-		MongoClient mongoClient = new MongoClient( "widmore.mongohq.com" , 10000 );
+		MongoClient mongoClient = new MongoClient(MongoSecret.HOST);
 		DB db = mongoClient.getDB("StudentHack");
 		
-		boolean auth = db.authenticate("studenthack", "jkgfhjgfdojnglegjdso".toCharArray());
+		boolean auth = db.authenticate(MongoSecret.USERNAME, MongoSecret.PASSWORD.toCharArray());
 		
 		if(auth){
             advertCollection = db.getCollection("advert");
