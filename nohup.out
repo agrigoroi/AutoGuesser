@@ -1,0 +1,22 @@
+Play server process ID is 4755
+[[37minfo[0m] play - Application started (Prod)
+[[37minfo[0m] play - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+Play server process ID is 4873
+[[37minfo[0m] play - Application started (Prod)
+[[37minfo[0m] play - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+[[31merror[0m] p.nettyException - Exception caught in Netty
+java.lang.IllegalArgumentException: invalid version format: */*
+	at org.jboss.netty.handler.codec.http.HttpVersion.<init>(HttpVersion.java:102) ~[io.netty.netty-3.7.0.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpVersion.valueOf(HttpVersion.java:62) ~[io.netty.netty-3.7.0.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpRequestDecoder.createMessage(HttpRequestDecoder.java:75) ~[io.netty.netty-3.7.0.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpMessageDecoder.decode(HttpMessageDecoder.java:189) ~[io.netty.netty-3.7.0.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpMessageDecoder.decode(HttpMessageDecoder.java:101) ~[io.netty.netty-3.7.0.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:500) ~[io.netty.netty-3.7.0.Final.jar:na]
+[[31merror[0m] p.nettyException - Exception caught in Netty
+java.lang.IllegalArgumentException: empty text
+	at org.jboss.netty.handler.codec.http.HttpVersion.<init>(HttpVersion.java:97) ~[io.netty.netty-3.7.0.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpVersion.valueOf(HttpVersion.java:62) ~[io.netty.netty-3.7.0.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpRequestDecoder.createMessage(HttpRequestDecoder.java:75) ~[io.netty.netty-3.7.0.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpMessageDecoder.decode(HttpMessageDecoder.java:189) ~[io.netty.netty-3.7.0.Final.jar:na]
+	at org.jboss.netty.handler.codec.http.HttpMessageDecoder.decode(HttpMessageDecoder.java:101) ~[io.netty.netty-3.7.0.Final.jar:na]
+	at org.jboss.netty.handler.codec.replay.ReplayingDecoder.callDecode(ReplayingDecoder.java:500) ~[io.netty.netty-3.7.0.Final.jar:na]
