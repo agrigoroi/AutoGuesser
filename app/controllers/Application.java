@@ -71,6 +71,7 @@ public class Application extends Controller {
 //			int result = db.findAdvert("201401241261493");
         if ((images == null) || (images.isEmpty())){
         	TimeUnit.SECONDS.sleep(1);
+        	return index();
         } 
         return ok(index.render(images, fake_id, player));
     }
