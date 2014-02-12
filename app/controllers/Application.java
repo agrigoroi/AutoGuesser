@@ -69,7 +69,9 @@ public class Application extends Controller {
         List<String> images = AutoTraderAPI.getAdvertImageLinks(advert.getId());
 	   String fake_id = Global.mongo.insertAdvert(advert.getId(), advert.getPrice(), images);
 //			int result = db.findAdvert("201401241261493");
-        if (images.isEmpty()) return index();
+        if ((images == null) || (images.isEmpty())){
+        	TimeUnit.SECONDS.sleep(1);
+        } 
         return ok(index.render(images, fake_id, player));
     }
 
